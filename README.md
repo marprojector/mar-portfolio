@@ -1,8 +1,6 @@
 # Portfolio
 
-The personal portfolio of [**Aitezaz Sikandar**](https://github.com/aitezazdev). Built with Next.js 15, GSAP, and Lenis, it features scroll-driven animations, animated page transitions, smooth scrolling, and a working contact form.
 
-**Live Site:** [aitezaz.xyz](https://aitezaz.xyz)
 
 ## Features
 
@@ -20,7 +18,7 @@ The personal portfolio of [**Aitezaz Sikandar**](https://github.com/aitezazdev).
 **Prerequisites:** Node.js 18+ and npm.
 
 ```bash
-git clone https://github.com/aitezazdev/Portfolio.git
+git clone https://github.com/\
 cd Portfolio
 npm install
 ```
