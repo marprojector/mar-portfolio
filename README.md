@@ -1,33 +1,73 @@
-# Portfolio
+# MARPROJECTOR — Portfolio
 
+> Personal portfolio of **MARPROJECTOR**, a developer focused on building modern web experiences with TypeScript, React, and Next.js.
 
+## ✦ About
 
-## Features
+This is my personal developer portfolio, built to showcase my projects, skills, and experiments with modern web technologies and interactive animations.
 
-- Scroll-driven GSAP animations using ScrollTrigger
-- Smooth scrolling powered by Lenis
-- Animated page transitions using next-transition-router
-- Custom cursor with interactive hover states
-- Film grain overlay, marquee strips, and dynamic interactive background
-- Contact form backed by Nodemailer with validation and spam checks
-- Vercel Analytics and Google Analytics integration
-- Fully typed with TypeScript
+The website combines **clean design, smooth interactions, and modern frontend development** to create an engaging digital experience.
 
-## Getting Started
+## ✦ Features
 
-**Prerequisites:** Node.js 18+ and npm.
+* Scroll-driven animations powered by **GSAP & ScrollTrigger**
+* Smooth scrolling with **Lenis**
+* Animated page transitions
+* Interactive custom cursor
+* Marquee animations
+* Dynamic interactive background
+* Film grain visual effect
+* Responsive design
+* Project showcase
+* Contact section
+* Fully typed with **TypeScript**
+* Optimized for modern browsers
+
+## ✦ Tech Stack
+
+### Frontend
+
+* **Next.js**
+* **React**
+* **TypeScript**
+* **Tailwind CSS**
+
+### Animation & Interaction
+
+* **GSAP**
+* **GSAP ScrollTrigger**
+* **Lenis**
+
+### Tools
+
+* **Git**
+* **GitHub**
+* **Vercel**
+* **Prettier**
+* **ESLint**
+
+## ✦ Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+* Node.js 18+
+* npm
+
+### Installation
+
+Clone the repository:
 
 ```bash
-git clone https://github.com/\
-cd Portfolio
-npm install
+git clone https://github.com/marprojector/mar-portfolio.git
+cd mar-portfolio
 ```
 
-Create a `.env.local` file in the root:
+Install dependencies:
 
-```env
-GMAIL_APP_PASSWORD=your_gmail_app_password
-NEXT_PUBLIC_GA_ID=your_google_analytics_id
+```bash
+npm install
 ```
 
 Start the development server:
@@ -36,39 +76,60 @@ Start the development server:
 npm run dev
 ```
 
-## Scripts
+Open your browser and visit:
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Create production build |
-| `npm run start` | Serve production build |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Run ESLint with auto-fix |
+```text
+http://localhost:3000
+```
+
+## ✦ Scripts
+
+| Command          | Description               |
+| ---------------- | ------------------------- |
+| `npm run dev`    | Start development server  |
+| `npm run build`  | Create production build   |
+| `npm run start`  | Start production server   |
+| `npm run lint`   | Run ESLint                |
 | `npm run format` | Format code with Prettier |
 
-## Project Structure
+## ✦ Project Structure
 
-```
+```text
 src/
-├── app/                  # App Router pages, layouts, and API routes
-│   ├── api/              # Backend handlers (contact form)
-│   └── projects/         # Individual project pages
+├── app/                    # Next.js App Router
+│   ├── api/                # API routes
+│   ├── projects/           # Project pages
+│   ├── layout.tsx          # Root layout
+│   └── page.tsx            # Home page
+│
 ├── components/
-│   ├── canvas/           # Canvas background components
-│   ├── project/          # Project detail components
-│   ├── providers/        # Lenis smooth scroll provider
-│   ├── sections/         # Page sections (Banner, About, Projects, Contact)
-│   ├── shared/           # Navbar, Footer, Preloader, Custom Cursor
-│   └── ui/               # Animated text and button components
-├── lib/                  # Metadata, navigation config, project data
-└── utils/                # Utility functions
+│   ├── canvas/             # Interactive canvas components
+│   ├── project/            # Project components
+│   ├── providers/          # Providers such as Lenis
+│   ├── sections/           # Main portfolio sections
+│   ├── shared/             # Navbar, Footer, Cursor, Preloader
+│   └── ui/                 # Reusable UI components
+│
+├── lib/                    # Project data and configuration
+└── utils/                  # Utility functions
 ```
 
-## Contributing
+## ✦ Projects
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+A collection of projects, experiments, and things I've built.
 
-## License
+Each project showcases its technology stack, description, and relevant links when available.
 
-Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+## ✦ Connect
+
+**GitHub**
+https://github.com/marprojector
+
+**Portfolio**
+https://mar-portfolio.vercel.app/
+
+---
+
+Built with **Next.js, TypeScript & GSAP**.
+
+**© 2026 MARPROJECTOR**
