@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">MARPROJECTOR project placeholder</title>
+  <desc id="desc">A neutral placeholder for a future MARPROJECTOR project.</desc>
+  <rect width="1200" height="630" fill="#1b1b19"/>
+  <path d="M0 520 1200 110M0 630 1200 220" stroke="#c45d3e" stroke-opacity=".45" stroke-width="2"/>
+  <text x="72" y="120" fill="#e8e4de" font-family="monospace" font-size="22" letter-spacing="5">MAR / PROJECTOR</text>
+  <text x="72" y="520" fill="#e8e4de" fill-opacity=".55" font-family="monospace" font-size="18" letter-spacing="3">PROJECT PLACEHOLDER</text>
+</svg>
