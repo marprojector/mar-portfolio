@@ -5,17 +5,21 @@ import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
 import ScrollWordReveal from '@/components/ui/ScrollWordReveal';
+import { SiTypescript, SiGithub, SiHtml5, SiCss3, SiVite, SiNpm, SiYarn, SiBun, SiNextdotjs } from 'react-icons/si';
 
 const STACK_SECTIONS = [
   {
     id: 'frontend',
     title: 'FRONTEND',
     technologies: [
-      { name: 'TypeScript', icon: '/Services/js.png' },
+      { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
       { name: 'JavaScript', icon: '/Services/js.png' },
+      { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+      { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
       { name: 'React', icon: '/Services/react.png' },
       { name: 'Next.js', icon: '/Services/next.webp' },
       { name: 'Tailwind CSS', icon: '/Services/tailwind.png' },
+      { name: 'Vite', icon: SiVite, color: '#646CFF' },
     ],
   },
   {
@@ -23,15 +27,20 @@ const STACK_SECTIONS = [
     title: 'BACKEND',
     technologies: [
       { name: 'Node.js', icon: '/Services/node.png' },
+      { name: 'NextAuth.js', icon: SiNextdotjs, color: '#E8E4DE' },
+      { name: 'MySQL', icon: '/Services/mysql.svg' },
       { name: 'tRPC', icon: '/Services/express.png' },
     ],
   },
   {
     id: 'tools',
-    title: 'TOOLS',
+    title: 'TOOLS & PACKAGE MANAGERS',
     technologies: [
       { name: 'Git', icon: '/Services/git.png' },
-      { name: 'GitHub', icon: '/Services/git.png' },
+      { name: 'GitHub', icon: SiGithub, color: '#E8E4DE' },
+      { name: 'npm', icon: SiNpm, color: '#CB3837' },
+      { name: 'Yarn', icon: SiYarn, color: '#2C8EBB' },
+      { name: 'Bun', icon: SiBun, color: '#F1F1F1' },
     ],
   },
 ];
@@ -74,16 +83,16 @@ const TechStack = () => {
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     if (typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || !window.matchMedia('(hover: hover)').matches)) return;
-    const img = e.currentTarget.querySelector('img');
-    if (!img) return;
-    gsap.to(img, { rotation: 360, scale: 1.1, duration: 0.6, ease: 'power2.out' });
+    const icon = e.currentTarget.querySelector('img, svg');
+    if (!icon) return;
+    gsap.to(icon, { rotation: 360, scale: 1.1, duration: 0.6, ease: 'power2.out' });
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     if (typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || !window.matchMedia('(hover: hover)').matches)) return;
-    const img = e.currentTarget.querySelector('img');
-    if (!img) return;
-    gsap.to(img, { rotation: 0, scale: 1, duration: 0.5, ease: 'power2.inOut' });
+    const icon = e.currentTarget.querySelector('img, svg');
+    if (!icon) return;
+    gsap.to(icon, { rotation: 0, scale: 1, duration: 0.5, ease: 'power2.inOut' });
   };
 
   return (
@@ -135,13 +144,21 @@ const TechStack = () => {
                     onMouseLeave={handleMouseLeave}
                   >
                     <div className="w-10 h-10 flex items-center justify-center relative">
-                      <Image
-                        src={tech.icon}
-                        alt={tech.name}
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-contain"
-                      />
+                      {typeof tech.icon === 'string' ? (
+                        <Image
+                          src={tech.icon}
+                          alt={tech.name}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <tech.icon
+                          className="w-8 h-8"
+                          color={tech.color || '#E8E4DE'}
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                     <p className="text-sm sm:text-base font-mono font-bold text-cream">
                       {tech.name}
