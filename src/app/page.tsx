@@ -70,7 +70,7 @@ export default function Home() {
   return (
     <div className="portfolio-dark-theme">
       <Navbar />
-      <main className="relative">
+      <main className="relative bg-ink">
         <section ref={homeRef} className="sticky top-0 left-0 w-full min-h-[100dvh] md:h-screen"><HomeBanner /></section>
         <div id="about-section-wrapper" className="relative bg-black">
           <div ref={reuniteRef} className="relative z-10 bg-ink min-h-screen overflow-hidden"><About techStackRef={techStackRef} /></div>
