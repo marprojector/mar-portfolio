@@ -25,7 +25,7 @@ export async function GET() {
       description: repository.description || 'A MARPROJECTOR project published on GitHub.',
       myRole: [],
       images: [],
-      hoverImage: '/markassar-info-og.png',
+      hoverImage: '/markassar-info-preview.png',
       github: repository.html_url,
       liveUrl: repository.homepage || '',
       stars: repository.stargazers_count,

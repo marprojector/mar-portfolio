@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description: 'A MARPROJECTOR project published on GitHub.',
     myRole: [],
     images: [],
-    hoverImage: '/markassar-info-og.png',
+    hoverImage: '/markassar-info-preview.png',
     github: 'https://github.com/marprojector/MARkassar-Info',
     liveUrl: 'https://markassar-info.vercel.app/',
   },
