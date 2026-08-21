@@ -357,7 +357,6 @@ const HomeBanner = () => {
                 className="dark-theme-button"
               />
               <AnimatedButton
-                onClick={() => window.open('/01_aitezaz_resume.pdf', '_blank')}
                 topText="RESUME"
                 bottomText="DOWNLOAD →"
                 variant="outline"
