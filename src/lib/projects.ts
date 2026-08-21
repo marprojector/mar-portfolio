@@ -24,7 +24,7 @@ export const projects: Project[] = [
     images: [],
     hoverImage: '/markassar-info-og.png',
     github: 'https://github.com/marprojector/MARkassar-Info',
-    liveUrl: 'https://ma-rkassar-info.vercel.app',
+    liveUrl: 'https://markassar-info.vercel.app/',
   },
 ];
 
