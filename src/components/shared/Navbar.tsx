@@ -9,7 +9,6 @@ import AnimatedLink from '@/components/ui/AnimateLink';
 import { useHandleLinkClick } from '@/lib/navigation';
 import Link from 'next/link';
 import Lenis from '@studio-freight/lenis';
-import { Copyright } from 'lucide-react';
 import Magnetic from '@/components/ui/Magnetic';
 
 interface MagneticHamburgerButtonProps {
@@ -129,23 +128,19 @@ const NavbarBrand: React.FC<NavbarBrandProps> = ({ logoRef, handleLinkClick }) =
           e.preventDefault();
           handleLinkClick('/#top');
         }}
-        className="group flex items-center cursor-pointer select-none py-1 text-warm"
+        className="group flex items-center gap-2.5 cursor-pointer select-none py-1"
         aria-label="M. Ammar Arief Home"
       >
-        <div className="transition-transform duration-500 ease-in-expo group-hover:rotate-[360deg] flex items-center justify-center">
-          <Copyright className="w-[18px] h-[18px]" />
-        </div>
-        <div className="relative ms-2 flex items-center whitespace-nowrap text-warm text-lg font-sans tracking-wide font-medium leading-none">
-          <span>mar</span>
-          <span className="relative inline-flex items-center overflow-hidden transition-all duration-500 ease-in-expo w-[32px] group-hover:w-[86px]">
-            <span className="transition-transform duration-500 ease-in-expo group-hover:-translate-x-full inline-block">
-              projector
-            </span>
-            <span className="absolute left-0 ps-1.5 transition-transform duration-500 ease-in-expo translate-x-full group-hover:translate-x-0 inline-block">
-              studio
-            </span>
-          </span>
-        </div>
+        <span
+          aria-hidden="true"
+          className="relative flex h-8 w-8 items-center justify-center rounded-lg border border-white/25 bg-white/[0.03] font-display text-[11px] font-bold tracking-[-0.12em] text-cream transition-all duration-300 group-hover:scale-105 group-hover:border-accent group-hover:bg-accent group-hover:text-ink"
+        >
+          MP
+          <span className="absolute bottom-1 right-1 h-1 w-1 rounded-full bg-accent transition-colors duration-300 group-hover:bg-ink" />
+        </span>
+        <span className="whitespace-nowrap font-mono text-xs font-semibold uppercase tracking-[0.14em] text-cream">
+          MAR<span className="text-accent transition-colors duration-300 group-hover:text-cream">PROJECTOR</span>
+        </span>
       </Link>
     </Magnetic>
   );
