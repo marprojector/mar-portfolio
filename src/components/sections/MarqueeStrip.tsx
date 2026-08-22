@@ -5,14 +5,16 @@ import { gsap } from '@/lib/gsap';
 import { useLenis } from '@/components/providers/SmoothScrollProvider';
 import Lenis from '@studio-freight/lenis';
 import { useReducedMotion } from '@/lib/useReducedMotion';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 export default function MarqueeStrip() {
   const track1Ref = useRef<HTMLDivElement>(null);
   const tween1Ref = useRef<gsap.core.Tween | null>(null);
   const lenisRef = useLenis() as React.RefObject<Lenis | null> | null;
   const reduced = useReducedMotion();
+  const { dict } = useLanguage();
 
-  const items = ['Available for Work', 'Open to Opportunities', "Let's Build", 'MERN Stack'];
+  const items = dict.marquee.items;
 
   useEffect(() => {
     if (reduced) return;

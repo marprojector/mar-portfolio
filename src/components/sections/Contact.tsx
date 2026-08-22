@@ -6,11 +6,13 @@ import AnimatedHeading from '@/components/ui/AnimateHeading';
 import ScrollWordReveal from '@/components/ui/ScrollWordReveal';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { useReducedMotion } from '@/lib/useReducedMotion';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const { dict } = useLanguage();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,9 +22,8 @@ const Contact = () => {
   const parallaxY = useTransform(scrollYProgress, [0, 1], [-160, 0]);
   const ctaSlideX = useTransform(scrollYProgress, [0, 1], [80, 0]);
 
-  const headingText = 'Contact';
-  const descriptionText =
-    'Have an idea or want to build something for the web? Reach out to MARPROJECTOR.';
+  const headingText = dict.contact.heading;
+  const descriptionText = dict.contact.description;
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -74,17 +75,17 @@ const Contact = () => {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
 
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.name.trim()) newErrors.name = dict.contact.errName;
 
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!formData.email.trim()) newErrors.email = dict.contact.errEmail;
     else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address';
+      if (!emailRegex.test(formData.email)) newErrors.email = dict.contact.errEmailInvalid;
     }
 
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (!formData.message.trim()) newErrors.message = dict.contact.errMessage;
     else if (!validateMessage(formData.message))
-      newErrors.message = 'Please enter a meaningful message (at least 30 characters, 5 words)';
+      newErrors.message = dict.contact.errMessageLen;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -151,7 +152,7 @@ const Contact = () => {
           >
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="font-medium text-sm sm:text-base text-muted">
-                Your Name <span className="text-red-400">*</span>
+                {dict.contact.nameLabel} <span className="text-red-400">*</span>
               </label>
               <input
                 id="name"
@@ -159,7 +160,7 @@ const Contact = () => {
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your Name"
+                placeholder={dict.contact.namePlaceholder}
                 className={`w-full px-4 py-3 text-sm sm:text-base border rounded-xl bg-surface text-cream placeholder-[#6a6a68] focus:outline-none transition-all duration-300 border-white/[0.08] focus:border-accent focus:ring-1 focus:ring-accent/30 ${
                   errors.name ? 'border-red-500 focus:border-red-500' : ''
                 }`}
@@ -170,7 +171,7 @@ const Contact = () => {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="font-medium text-sm sm:text-base text-muted">
-                Your Email <span className="text-red-400">*</span>
+                {dict.contact.emailLabel} <span className="text-red-400">*</span>
               </label>
               <input
                 id="email"
@@ -179,7 +180,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 autoComplete="email"
-                placeholder="you@example.com"
+                placeholder={dict.contact.emailPlaceholder}
                 className={`w-full px-4 py-3 text-sm sm:text-base border rounded-xl bg-surface text-cream placeholder-[#6a6a68] focus:outline-none transition-all duration-300 border-white/[0.08] focus:border-accent focus:ring-1 focus:ring-accent/30 ${
                   errors.email ? 'border-red-500 focus:border-red-500' : ''
                 }`}
@@ -190,7 +191,7 @@ const Contact = () => {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="font-medium text-sm sm:text-base text-muted">
-                Message <span className="text-red-400">*</span>
+                {dict.contact.messageLabel} <span className="text-red-400">*</span>
               </label>
               <textarea
                 id="message"
@@ -198,7 +199,7 @@ const Contact = () => {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Write your message here..."
+                placeholder={dict.contact.messagePlaceholder}
                 className={`w-full px-4 py-3 text-sm sm:text-base border rounded-xl bg-surface text-cream placeholder-[#6a6a68] resize-none focus:outline-none transition-all duration-300 border-white/[0.08] focus:border-accent focus:ring-1 focus:ring-accent/30 ${
                   errors.message ? 'border-red-500 focus:border-red-500' : ''
                 }`}
@@ -223,7 +224,7 @@ const Contact = () => {
 
               {submitStatus === 'error' && !errors.server && (
                 <div className="p-4 bg-red-900/20 border border-red-600/40 rounded-xl mb-4">
-                  <p className="text-red-400 text-sm">Something went wrong. Please try again later.</p>
+                  <p className="text-red-400 text-sm">{dict.contact.errorGeneric}</p>
                 </div>
               )}
             </div>
@@ -234,13 +235,13 @@ const Contact = () => {
                 disabled={isDisabled}
                 className="inline-block border-0 bg-transparent p-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <AnimatedButton
-                  topText={isDisabled ? 'PLEASE WAIT...' : 'SEND MESSAGE'}
-                  bottomText={isDisabled ? 'PROCESSING' : 'PROCEED →'}
-                  variant="primary"
-                  as="span"
-                  className={isDisabled ? 'pointer-events-none' : ''}
-                />
+                  <AnimatedButton
+                    topText={isDisabled ? dict.contact.ctaWait : dict.contact.ctaSend}
+                    bottomText={isDisabled ? dict.contact.ctaProcessing : dict.contact.ctaProceed}
+                    variant="primary"
+                    as="span"
+                    className={isDisabled ? 'pointer-events-none' : ''}
+                  />
               </button>
             </div>
           </form>
@@ -248,13 +249,13 @@ const Contact = () => {
           <div className="mt-16 pt-12 border-t border-elevated-dark flex flex-col items-center justify-center text-center w-full">
             <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
               <p className="text-xs uppercase tracking-widest text-warm mb-3 font-mono text-center">
-                Direct Contact
+                {dict.contact.directContact}
               </p>
 
               <motion.div style={{ x: reduced ? 0 : ctaSlideX }} className="inline-block">
                 <button
                   type="button"
-                  aria-label="Copy email address to clipboard"
+                  aria-label={dict.contact.clickCopy}
                   onClick={() => {
                     navigator.clipboard.writeText('marmdhn28@gmail.com');
                     const toast = document.getElementById('email-copy-toast');
@@ -278,7 +279,7 @@ const Contact = () => {
               </motion.div>
 
               <span className="font-mono text-[11px] text-warm/70 uppercase tracking-widest mt-2 block text-center">
-                Click to copy email address
+                {dict.contact.clickCopy}
               </span>
             </div>
           </div>
@@ -304,7 +305,7 @@ const Contact = () => {
           transition: 'opacity 0.3s ease, transform 0.3s ease',
         }}
       >
-        ✓ Copied to clipboard
+        ✓ {dict.contact.copied}
       </div>
     </section>
   );

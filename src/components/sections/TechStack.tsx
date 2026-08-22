@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
 import ScrollWordReveal from '@/components/ui/ScrollWordReveal';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { SiTypescript, SiGithub, SiHtml5, SiCss3, SiVite, SiNpm, SiYarn, SiBun, SiNextdotjs } from 'react-icons/si';
 
 const STACK_SECTIONS = [
@@ -46,12 +47,12 @@ const STACK_SECTIONS = [
 ];
 
 const TechStack = () => {
+  const { dict } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
-  const headingText = 'My Tech Stack';
-  const descriptionText =
-    'A selection of technologies I use to design, build, and deploy full-stack web applications.';
+  const headingText = dict.tech.heading;
+  const descriptionText = dict.tech.description;
 
   useGSAP(
     () => {
@@ -116,7 +117,7 @@ const TechStack = () => {
 
         <div className="mb-10 md:hidden">
           <AnimatedHeading
-            text="My Stack"
+            text={headingText}
             className="text-[clamp(2.5rem,7vw,6.5rem)] font-black tracking-tight leading-none uppercase mb-4"
           />
         </div>
@@ -132,7 +133,7 @@ const TechStack = () => {
                 ref={(el) => { titleRefs.current[index] = el; }}
                 className="md:w-1/3 text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-accent-light tracking-tight font-display uppercase"
               >
-                {stack.title}
+                 {dict.tech.groups[stack.id as keyof typeof dict.tech.groups]}
               </h3>
 
               <div className="md:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
 import { getAllProjects } from '@/lib/projects';
 import { Project } from '@/lib/projects';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const useHoverPreview = (
   containerRef: React.RefObject<HTMLDivElement | null>,
@@ -164,6 +165,7 @@ interface MobileSnapProjectsProps {
 }
 
 function MobileSnapProjects({ projects, router }: MobileSnapProjectsProps) {
+  const { dict } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -227,7 +229,7 @@ function MobileSnapProjects({ projects, router }: MobileSnapProjectsProps) {
     <div ref={sectionRef} className="md:hidden bg-cream pb-12">
       <div className="px-6 pt-16 pb-8">
         <AnimatedHeading
-          text="PROJECTS"
+          text={dict.projects.heading}
           className="text-[clamp(3rem,14vw,5rem)] font-black leading-none uppercase text-charcoal"
         />
       </div>
@@ -322,7 +324,7 @@ function MobileSnapProjects({ projects, router }: MobileSnapProjectsProps) {
                     className="font-mono text-[11px] uppercase tracking-widest"
                     style={{ color: 'rgba(255,255,255,0.45)' }}
                   >
-                    View Project
+                    {dict.projects.viewProject}
                   </span>
                   <span
                     className="flex items-center justify-center w-9 h-9 rounded-full text-white text-sm"
@@ -342,9 +344,9 @@ function MobileSnapProjects({ projects, router }: MobileSnapProjectsProps) {
 }
 
 export default function ProjectsPage() {
+  const { dict } = useLanguage();
   const router = useRouter();
   const [projects, setProjects] = useState<Project[]>(getAllProjects());
-  const isLoading = false;
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredImage, setHoveredImage] = useState<string>('');
   const lastHoveredImgRef = useRef<string>('');
@@ -366,7 +368,11 @@ export default function ProjectsPage() {
     fetch('/api/github-project')
       .then((response) => (response.ok ? response.json() : null))
       .then((project: Project | null) => {
-        if (active && project) setProjects([project]);
+        if (active && project) {
+          setProjects((prev) =>
+            prev.some((p) => p.slug === project.slug) ? prev : [project, ...prev],
+          );
+        }
       })
       .catch(() => {});
     return () => {
@@ -385,7 +391,7 @@ export default function ProjectsPage() {
 
   useGSAP(
     () => {
-      if (isLoading || projects.length === 0) return;
+      if (projects.length === 0) return;
       const rows = containerRef.current?.querySelectorAll('.project-row-desktop');
       if (!rows?.length) return;
       rows.forEach((row, index) => {
@@ -398,7 +404,7 @@ export default function ProjectsPage() {
         }
       });
     },
-    { scope: containerRef, dependencies: [isLoading, projects] },
+    { scope: containerRef, dependencies: [projects] },
   );
 
   const handleRowMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>, imageUrl: string, index: number) => {
@@ -448,27 +454,6 @@ export default function ProjectsPage() {
     sessionStorage.setItem('previous-project-url', window.location.pathname);
   };
 
-  if (isLoading) {
-    return (
-      <section id="projects" className="relative min-h-screen w-full bg-cream text-charcoal overflow-hidden px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="h-20 bg-gray-300 rounded animate-pulse w-1/3 mb-10" />
-          <div className="space-y-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="py-8 border-b border-border flex animate-pulse">
-                <div className="w-12 h-6 bg-gray-300 rounded mr-8" />
-                <div className="flex-1 space-y-4">
-                  <div className="h-10 bg-gray-300 rounded w-1/2" />
-                  <div className="h-6 bg-gray-300 rounded w-1/4" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section
       id="projects"
@@ -478,7 +463,7 @@ export default function ProjectsPage() {
       <div className="hidden md:block py-24 md:py-32 px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl mx-auto">
         <div className="mb-12">
           <AnimatedHeading
-            text="PROJECTS"
+            text={dict.projects.heading}
             className="text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-none uppercase text-charcoal"
           />
         </div>
@@ -529,7 +514,7 @@ export default function ProjectsPage() {
 
               <div className="flex-[0_0_200px] text-right flex flex-col justify-end items-end pb-2">
                 <span className="font-mono text-xs uppercase tracking-widest text-charcoal group-hover:text-accent transition-colors duration-250 flex items-center gap-1">
-                  <span>View Project</span>
+                  <span>{dict.projects.viewProject}</span>
                   <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">
                     →
                   </span>

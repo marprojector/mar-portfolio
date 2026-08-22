@@ -1,6 +1,7 @@
 import ProjectDetails from '@/components/project/ProjectDetails';
 import { getProjectBySlug, getAllProjects } from '@/lib/projects';
 import { notFound } from 'next/navigation';
+import Navbar from '@/components/shared/Navbar';
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -41,6 +42,11 @@ export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) notFound();
-  return <ProjectDetails key={project.slug} project={project} />;
+  return (
+    <>
+      <Navbar />
+      <ProjectDetails key={project.slug} project={project} />
+    </>
+  );
 }
 

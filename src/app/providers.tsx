@@ -7,6 +7,7 @@ import { TransitionRouter } from 'next-transition-router';
 import { useLenis } from '@/components/providers/SmoothScrollProvider';
 import Lenis from '@studio-freight/lenis';
 import { safeSessionStorage } from '@/utils/storage';
+import { LanguageProvider } from '@/lib/i18n/LanguageProvider';
 
 declare global {
   interface Window {
@@ -158,8 +159,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <TransitionRouter
-      auto={true}
+    <LanguageProvider>
+      <TransitionRouter
+        auto={true}
       leave={(next: () => void, _from: string, to: string) => {
         if (lenis?.current) lenis.current.stop();
         const isGoingToProject = to.startsWith('/projects/');
@@ -273,5 +275,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         style={{ willChange: 'transform' }}
       />
     </TransitionRouter>
+    </LanguageProvider>
   );
 }

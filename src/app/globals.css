@@ -33,6 +33,13 @@
   --ease-custom: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -56,9 +63,29 @@
     animation: none !important;
   }
 
+  .scroll-cue-line {
+    animation: none !important;
+  }
+
   .preloader-active main {
     visibility: visible !important;
   }
+}
+
+@keyframes scrollCue {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.scroll-cue-line {
+  animation: scrollCue 1.6s ease-in-out infinite;
 }
 
 body.menu-open {

@@ -5,18 +5,15 @@ import { gsap, ScrollTrigger, useGSAP } from '@/lib/gsap';
 import dynamic from 'next/dynamic';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { useReducedMotion } from '@/lib/useReducedMotion';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const AmbientGeometry = dynamic(() => import('@/components/canvas/AmbientGeometry'), {
   ssr: false,
 });
 
 const RoleTicker = () => {
-  const roles = [
-    'Frontend Developer',
-    'Full-Stack Developer',
-    'Interface Experimenter',
-    'MARPROJECTOR',
-  ];
+  const { dict } = useLanguage();
+  const roles = dict.hero.roles;
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -75,7 +72,9 @@ const HomeBanner = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const innerContentRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
+  const scrollCueRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const { dict } = useLanguage();
 
   const splitText = (text: string) =>
     text.split('').map((char, idx) => (
@@ -291,6 +290,17 @@ const HomeBanner = () => {
     }
   };
 
+  useEffect(() => {
+    if (reduced) return;
+    const onScroll = () => {
+      if (!scrollCueRef.current) return;
+      const y = window.scrollY || 0;
+      scrollCueRef.current.style.opacity = y > 80 ? '0' : '1';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [reduced]);
+
   return (
     <section
       ref={sectionRef}
@@ -334,8 +344,7 @@ const HomeBanner = () => {
               ref={paragraphRef}
               className="text-warm font-sans text-base sm:text-lg md:text-xl leading-relaxed mb-8 md:mb-10 text-center mx-auto"
             >
-              Building interfaces, experiences, and things for the web. I enjoy modern web applications,
-              frontend interactions, and animation with purpose.
+              {dict.hero.tagline}
             </p>
 
             <div ref={tickerRef} className="w-full flex justify-center">
@@ -345,27 +354,32 @@ const HomeBanner = () => {
             <div ref={buttonsRef} className="flex flex-row justify-center items-center gap-2.5 sm:gap-4 flex-wrap w-full max-w-full mx-auto px-2">
               <AnimatedButton
                 onClick={() => handleScroll('projects')}
-                topText="PROJECTS"
-                bottomText="VIEW WORK →"
+                topText={dict.hero.ctaProjects}
+                bottomText={dict.hero.ctaViewWork}
                 variant="primary"
               />
               <AnimatedButton
                 onClick={() => handleScroll('contact')}
-                topText="CONTACT"
-                bottomText="GET IN TOUCH →"
+                topText={dict.hero.ctaContact}
+                bottomText={dict.hero.ctaGetInTouch}
                 variant="light"
-                className="dark-theme-button"
-              />
-              <AnimatedButton
-                topText="RESUME"
-                bottomText="DOWNLOAD →"
-                variant="outline"
                 className="dark-theme-button"
               />
             </div>
           </div>
         </div>
       </div>
+
+      {!reduced && (
+        <div
+          ref={scrollCueRef}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 transition-opacity duration-500"
+          aria-hidden="true"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-warm">Scroll</span>
+          <span className="block w-px h-10 origin-top bg-gradient-to-b from-accent to-transparent scroll-cue-line" />
+        </div>
+      )}
     </section>
   );
 };

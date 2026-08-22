@@ -7,8 +7,10 @@ import { FaArrowUp } from 'react-icons/fa';
 import { useHandleLinkClick } from '@/lib/navigation';
 import { useLenis } from '@/components/providers/SmoothScrollProvider';
 import Lenis from '@studio-freight/lenis';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const Footer = () => {
+  const { dict } = useLanguage();
   const [currentTime, setCurrentTime] = useState('');
   const [isMounted, setIsMounted] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
@@ -49,10 +51,10 @@ const Footer = () => {
 
   const handleLinkClick = useHandleLinkClick();
   const links = [
-  { name: 'About', href: '/#about' },
-  { name: 'Services', href: '/#services' },
-    { name: 'Work', href: '/#projects' },
-    { name: 'Contact', href: '/#contact' },
+  { name: dict.nav.about, href: '/#about' },
+  { name: dict.nav.services, href: '/#services' },
+    { name: dict.nav.work, href: '/#projects' },
+    { name: dict.nav.contact, href: '/#contact' },
   ];
 
   const scrollToTop = () => {
@@ -69,7 +71,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-12">
           <div>
             <h3 className="text-light/90 text-base sm:text-lg font-sans tracking-wide font-semibold mb-4 md:mb-6">
-              Menu
+              {dict.footer.menu}
             </h3>
             <ul className="flex flex-col gap-3 sm:gap-4 text-gray-soft text-xs sm:text-sm font-sans font-medium uppercase tracking-wide">
               {links.map((link) => (
@@ -90,7 +92,7 @@ const Footer = () => {
 
           <div>
             <h3 className="text-light/90 text-base sm:text-lg font-sans tracking-wide font-semibold mb-4 md:mb-6">
-              Socials
+              {dict.footer.socials}
             </h3>
             <ul className="flex flex-col gap-3 sm:gap-4 text-gray-soft text-xs sm:text-sm font-sans font-medium uppercase tracking-wide">
               {[
@@ -110,10 +112,10 @@ const Footer = () => {
 
           <div className="col-span-2 md:col-span-1 mt-6 md:mt-0">
             <h3 className="text-light/90 text-base sm:text-lg font-sans tracking-wide font-semibold mb-2 md:mb-6">
-              Local Time
+              {dict.footer.localTime}
             </h3>
             <p className="text-gray-soft text-sm sm:text-base font-sans font-medium tracking-wide">
-              {isMounted && currentTime ? `${currentTime} PKT` : 'Loading local time...'}
+              {isMounted && currentTime ? `${currentTime} PKT` : dict.footer.loadingTime}
             </p>
           </div>
         </div>

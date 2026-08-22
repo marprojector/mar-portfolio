@@ -4,8 +4,10 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
 import ScrollWordReveal from '@/components/ui/ScrollWordReveal';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const Services = () => {
+  const { dict } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -28,45 +30,15 @@ const Services = () => {
     return () => ctx.revert();
   }, []);
 
-  const headingText = 'What I Build';
-  const descriptionText =
-    'I build modern web applications and experiment with frontend interactions, animation, and thoughtful digital experiences.';
+  const headingText = dict.services.heading;
+  const descriptionText = dict.services.description;
 
-  const services = [
-    {
-      id: '01',
-      title: 'Web Applications',
-      description:
-        'Building clear, responsive, and maintainable web applications from interface to backend systems.',
-      items: [
-        'React & Next.js interfaces',
-        'Node.js APIs & integrations',
-        'TypeScript-first development',
-      ],
-    },
-    {
-      id: '02',
-      title: 'Frontend Interactions',
-      description:
-        'Exploring motion, interaction, and visual systems that make the web feel intentional without sacrificing usability.',
-      items: [
-        'React, Next.js & Tailwind CSS',
-        'GSAP animation experiments',
-        'Responsive interface systems',
-      ],
-    },
-    {
-      id: '03',
-      title: 'Tools & Workflow',
-      description:
-        'A practical workflow for turning ideas into polished, testable, and shareable digital work.',
-      items: [
-        'Git & GitHub collaboration',
-        'tRPC and type-safe systems',
-        'Iteration with curiosity',
-      ],
-    },
-  ];
+  const services = dict.services.items.map((item, index) => ({
+    id: String(index + 1).padStart(2, '0'),
+    title: item.title,
+    description: item.description,
+    items: item.points,
+  }));
 
   return (
     <section

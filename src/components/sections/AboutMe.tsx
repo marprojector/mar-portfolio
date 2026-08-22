@@ -5,17 +5,14 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import Image from 'next/image';
 import ScrollWordReveal from '@/components/ui/ScrollWordReveal';
 import AnimatedHeading from '@/components/ui/AnimateHeading';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 const About = () => {
-  const headingText = 'About';
-  const descriptionText =
-    'I am M. Ammar Arief, the developer behind MARPROJECTOR. I build modern web applications and experiment with frontend interactions.';
-  const aboutMeText = `MARPROJECTOR is a personal playground for building thoughtful digital experiences. I care about the space where engineering meets a feeling.
+  const { dict } = useLanguage();
+  const headingText = dict.about.heading;
+  const descriptionText = dict.about.description;
+  const aboutMeText = dict.about.bio;
 
-My toolkit includes TypeScript, JavaScript, React, Next.js, Tailwind CSS, Node.js, tRPC, Git, and GitHub.
-
-The work is still unfolding. Projects, experiments, and open-source work will be added here as they become ready to share.`;
-  
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -87,7 +84,7 @@ The work is still unfolding. Projects, experiments, and open-source work will be
                   alt="M. Ammar Arief at sunset"
                   fill
                   sizes="(max-width: 768px) 350px, 380px"
-                  className="object-cover object-[center_58%] transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="object-cover object-[center_58%] scale-x-[-1] transition-transform duration-700 group-hover:scale-[1.03]"
                   priority
                 />
 
@@ -110,6 +107,21 @@ The work is still unfolding. Projects, experiments, and open-source work will be
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-border-subtler">
+            {[
+              { value: '2024', label: dict.about.statBuildingSince },
+              { value: '15+', label: dict.about.statTechnologies },
+              { value: '∞', label: dict.about.statExperiments },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center sm:text-left py-2">
+                <p className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-accent leading-none">
+                  {stat.value}
+                </p>
+                <p className="font-mono text-xs uppercase tracking-widest text-warm mt-2">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
