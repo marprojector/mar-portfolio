@@ -1,3 +1,6 @@
+<img width="1710" height="992" alt="Screenshot 2026-08-26 at 01 43 59" src="https://github.com/user-attachments/assets/cedeb369-2cdf-4653-817d-7756bc8ac080" />
+
+
 # MARPROJECTOR — Portfolio
 
 > Personal portfolio of **MARPROJECTOR**, a developer focused on building modern web experiences with TypeScript, React, and Next.js.
