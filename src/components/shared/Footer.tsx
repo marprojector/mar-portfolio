@@ -96,8 +96,7 @@ const Footer = () => {
             </h3>
             <ul className="flex flex-col gap-3 sm:gap-4 text-gray-soft text-xs sm:text-sm font-sans font-medium uppercase tracking-wide">
               {[
-                { label: 'Linkedin', href: '#' },
-                { label: 'Instagram', href: '#' },
+                { label: 'Instagram', href: 'https://www.instagram.com/marprojector/?utm_source=ig_web_button_share_sheet' },
                 { label: 'Github', href: 'https://github.com/marprojector' },
                 { label: 'MARPROJECTOR', href: 'https://github.com/marprojector' },
               ].map((s) => (

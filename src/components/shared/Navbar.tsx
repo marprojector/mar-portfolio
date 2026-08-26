@@ -376,7 +376,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ onClose, handleLinkClic
               {[
                 { label: 'GitHub', href: 'https://github.com/marprojector' },
                 { label: 'Source Code', href: 'https://github.com/marprojector' },
-                { label: 'LinkedIn', href: '#' },
+                { label: 'Instagram', href: 'https://www.instagram.com/marprojector/?utm_source=ig_web_button_share_sheet' },
               ].map((s) => (
                 <Magnetic key={s.label} strength={0.3}>
                   <a
@@ -575,7 +575,7 @@ const Navbar: React.FC<NavbarProps> = ({ hamburgerOnly = false }) => {
       {!hamburgerOnly && (
         <nav
           ref={navRef}
-          className={`${isHome ? 'hidden md:block' : 'hidden'} fixed w-full py-5 z-50 bg-cream/90 backdrop-blur-sm border-b border-warm/10 transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none`}
+          className={`${isHome ? 'hidden md:block' : 'hidden'} fixed w-full py-5 z-50 bg-ink/90 backdrop-blur-sm border-b border-warm/10 transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none`}
           style={linkNavStyle}
         >
           <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 flex justify-between items-center">
@@ -610,7 +610,7 @@ const Navbar: React.FC<NavbarProps> = ({ hamburgerOnly = false }) => {
       {!hamburgerOnly && (
         <nav
           ref={mobileNavRef}
-          className="mobile-navbar md:hidden fixed w-full z-50 bg-cream/90 backdrop-blur-md border-b border-warm/10"
+          className="mobile-navbar md:hidden fixed w-full z-50 bg-ink/90 backdrop-blur-md border-b border-warm/10"
           style={navStyle}
         >
           <div className="flex justify-between items-center px-6 sm:px-8 h-20 w-full">

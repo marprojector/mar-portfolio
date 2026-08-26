@@ -99,6 +99,11 @@ body.preloader-active {
 
 html {
   touch-action: pan-y;
+  background-color: #0f0e0c;
+}
+
+body.preloader-active {
+  background-color: #141516;
 }
 
 body {
