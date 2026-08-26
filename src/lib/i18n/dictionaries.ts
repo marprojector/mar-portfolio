@@ -213,6 +213,13 @@ export const dictionaries: Record<Locale, Dict> = {
         },
         myRole: { en: [], id: [] },
       },
+      marlynk: {
+        description: {
+          en: 'A modern URL shortener and QR code generator for creating and sharing short links with ease.',
+          id: 'Pemendek URL dan generator kode QR modern untuk membuat dan membagikan tautan pendek dengan mudah.',
+        },
+        myRole: { en: ['Full-Stack Developer'], id: ['Pengembang Full-Stack'] },
+      },
     },
   },
   id: {
@@ -344,6 +351,13 @@ export const dictionaries: Record<Locale, Dict> = {
           id: 'Sebuah proyek MARPROJECTOR yang dipublikasikan di GitHub.',
         },
         myRole: { en: [], id: [] },
+      },
+      marlynk: {
+        description: {
+          en: 'A modern URL shortener and QR code generator for creating and sharing short links with ease.',
+          id: 'Pemendek URL dan generator kode QR modern untuk membuat dan membagikan tautan pendek dengan mudah.',
+        },
+        myRole: { en: ['Full-Stack Developer'], id: ['Pengembang Full-Stack'] },
       },
     },
   },

@@ -26,6 +26,19 @@ export const projects: Project[] = [
     github: 'https://github.com/marprojector/MARkassar-Info',
     liveUrl: 'https://markassar-info.vercel.app/',
   },
+  {
+    id: 2,
+    slug: 'marlynk',
+    title: 'MarLynk',
+    year: '2026',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Drizzle ORM', 'PostgreSQL', 'Vercel'],
+    description: 'A modern URL shortener and QR code generator for creating and sharing short links with ease.',
+    myRole: ['Full-Stack Developer'],
+    images: [],
+    hoverImage: '/marlynk-preview.png',
+    github: 'https://github.com/marprojector/MarLynk',
+    liveUrl: 'https://marlynk.vercel.app',
+  },
 ];
 
 export function getAllProjects(): Project[] {
