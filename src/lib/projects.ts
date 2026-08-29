@@ -14,6 +14,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 3,
+    slug: 'mardocs-ai',
+    title: 'MarDocs AI',
+    year: '2026',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Auth.js', 'Vercel AI SDK', 'Vercel Blob', 'RAG'],
+    description: 'AI-powered document chat platform that allows users to upload, manage, and interact with documents using AI.',
+    myRole: ['Full-Stack Developer'],
+    images: ['/mardocs-ai.preview.png'],
+    hoverImage: '/mardocs-ai.preview.png',
+    github: 'https://github.com/marprojector/MarDocs-AI',
+    liveUrl: 'https://mardocs-ai.vercel.app/',
+  },
+  {
     id: 1,
     slug: 'markassar-info',
     title: 'MARkassar-Info',

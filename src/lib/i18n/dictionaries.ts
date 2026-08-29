@@ -206,6 +206,13 @@ export const dictionaries: Record<Locale, Dict> = {
       items: ['Available for Work', 'Open to Opportunities', "Let's Build", 'MERN Stack'],
     },
     projectsData: {
+      'mardocs-ai': {
+        description: {
+          en: 'AI-powered document chat platform that allows users to upload, manage, and interact with documents using AI. Users can ask questions about document content and get answers based on the document content using RAG approach.',
+          id: 'Platform chat dokumen berbasis AI yang memungkinkan pengguna mengunggah, mengelola, dan berinteraksi dengan dokumen menggunakan AI. Pengguna dapat mengajukan pertanyaan tentang isi dokumen dan mendapatkan jawaban berdasarkan konten dokumen menggunakan pendekatan RAG.',
+        },
+        myRole: { en: ['Full-Stack Developer'], id: ['Pengembang Full-Stack'] },
+      },
       'markassar-info': {
         description: {
           en: 'A MARPROJECTOR project published on GitHub.',
@@ -345,6 +352,13 @@ export const dictionaries: Record<Locale, Dict> = {
       items: ['Tersedia untuk Bekerja', 'Terbuka pada Peluang', 'Ayo Bangun', 'MERN Stack'],
     },
     projectsData: {
+      'mardocs-ai': {
+        description: {
+          en: 'AI-powered document chat platform that allows users to upload, manage, and interact with documents using AI. Users can ask questions about document content and get answers based on the document content using RAG approach.',
+          id: 'Platform chat dokumen berbasis AI yang memungkinkan pengguna mengunggah, mengelola, dan berinteraksi dengan dokumen menggunakan AI. Pengguna dapat mengajukan pertanyaan tentang isi dokumen dan mendapatkan jawaban berdasarkan konten dokumen menggunakan pendekatan RAG.',
+        },
+        myRole: { en: ['Full-Stack Developer'], id: ['Pengembang Full-Stack'] },
+      },
       'markassar-info': {
         description: {
           en: 'A MARPROJECTOR project published on GitHub.',
