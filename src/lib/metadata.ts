@@ -23,7 +23,12 @@ export const siteMetadata: Metadata = {
     },
   ],
   creator: 'M. Ammar Arief',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://marprojector.ammararief.my.id'
+        : 'http://localhost:3000'),
+  ),
   alternates: {
     canonical: './',
   },
@@ -57,4 +62,3 @@ export const siteMetadata: Metadata = {
     follow: true,
   },
 };
-
