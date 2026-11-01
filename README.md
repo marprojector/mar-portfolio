@@ -129,7 +129,7 @@ Each project showcases its technology stack, description, and relevant links whe
 https://github.com/marprojector
 
 **Portfolio**
-https://mar-portfolio.vercel.app/
+https://marprojector.ammararief.my.id/
 
 ---
 

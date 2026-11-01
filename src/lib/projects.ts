@@ -24,7 +24,7 @@ export const projects: Project[] = [
     images: ['/mardocs-ai-preview.png'],
     hoverImage: '/mardocs-ai-preview.png',
     github: 'https://github.com/marprojector/MarDocs-AI',
-    liveUrl: 'https://mardocs-ai.vercel.app/',
+    liveUrl: 'https://mardocs.ammararief.my.id/',
   },
   {
     id: 1,
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     images: [],
     hoverImage: '/marlynk-preview.png',
     github: 'https://github.com/marprojector/MarLynk',
-    liveUrl: 'https://marlynk.vercel.app',
+    liveUrl: 'https://marlynk.ammararief.my.id/',
   },
 ];
 
